@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
 from .forms import RegisterForm,CustomLoginForm
 from django.contrib.auth import login
-from LifeLinkApp.models import Donor, Recipient, Client
+from LifeLinkApp.models import Donor, Recipient, Client, OrganDonor, OrganRecipient
 
 
 def index(request):
@@ -109,6 +109,58 @@ def recipient_details(request):
 def view_recipients(request):
     recipients = Recipient.objects.all()
     return render(request,'view_recipients.html',{'recipients':recipients})
+
+def organ_transplant(request):
+    return render(request,'organ_transplant.html')
+
+def organ_donors_details(request):
+    if request.method =='POST':
+        donor_name = request.POST['donor_name']
+        donor_organType = request.POST['donor_organType']
+        donor_contact = request.POST['donor_contact']
+        donor_address = request.POST['donor_address']
+
+        donor = OrganDonor(
+            donor_name=donor_name,
+            donor_organType=donor_organType,
+            donor_contact=donor_contact,
+            donor_address=donor_address,
+
+        )
+        donor.save()
+    return render(request,'organ_donor_details.html')
+
+
+
+def view_organ_donors(request):
+    donors = OrganDonor.objects.all()
+    return render(request,'view_organ_donors.html',{'donors':donors})
+
+
+def organ_recipient_details(request):
+    if request.method =='POST':
+        recipient_name = request.POST['recipient_name']
+        recipient_organType = request.POST['recipient_organType']
+        recipient_contact = request.POST['recipient_contact']
+        recipient_address = request.POST['recipient_address']
+        recipient_message = request.POST['recipient_message']
+
+        recipient = OrganRecipient(
+            recipient_name=recipient_name,
+            recipient_organType=recipient_organType,
+            recipient_contact=recipient_contact,
+            recipient_address=recipient_address,
+            recipient_message = recipient_message
+
+        )
+        recipient.save()
+    return render(request,'organ_recipient_details.html')
+
+
+def view_organ_recipients(request):
+    recipients =OrganRecipient.objects.all()
+    return render('view_organ_recipients.html',{'recipients':recipients})
+
 
 
 

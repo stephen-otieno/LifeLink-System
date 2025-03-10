@@ -1,0 +1,249 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>LifeLink</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/logo1.jpg' %}" rel="icon">
+  <link href="{% static 'assets/img/logo1.jpg' %}" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css'%}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'assets/css/donor_details.css' %}">
+
+  <style>
+    #hero-carousel {
+        width: 90%;  /* Adjusted width for better fit */
+        margin: 0 auto;
+        height: 10cm;
+    }
+    .carousel-item img {
+        width: 100%;  /* Ensures images stretch to container width */
+        height: 25%;
+        object-fit: cover;  /* Ensures aspect ratio is maintained */
+
+
+    }
+    .btns {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+  </style>
+</head>
+
+<body class="index-page">
+
+ <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{% url 'homepage' %}" class="logo d-flex align-items-center me-auto">
+
+         <img src="{% static 'assets/img/logo1.jpg' %}" alt="">
+        <h1 class="sitename">LifeLink</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'homepage' %}" class="active">Home</a></li>
+          <li><a href="{% url 'homepage' %}#about">About</a></li>
+           <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#services">Blood Donations</a></li>
+              <li><a href="#services">Organ Transplants</a></li>
+              <li><a href="#services">Minor & Major surgeries</a></li>
+              <li><a href="#services">Screening</a></li>
+            </ul>
+          </li>
+          <li><a href="#team">Team</a></li>
+
+          <li><a href="#contact">Contact</a></li>
+
+        </ul>
+
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+
+    </div>
+  </header>
+
+  <main class="main container">
+    <section class="container">
+      <h3>Organ Transplant</h3> <br>
+    <div class="container-fluid px-0">
+  <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'assets/img/recipient-bg.jpg' %}" class="d-block w-100" alt="Organ Transplant">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'assets/img/organ-transplants.jpg' %}" class="d-block w-100" alt="Organ Transplant Procedure">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'assets/img/organ donor hero.jpg' %}" class="d-block w-100" alt="Organ Donation">
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
+
+<!-- Bootstrap & JavaScript Fix -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var myCarousel = new bootstrap.Carousel(document.querySelector("#hero-carousel"), {
+      interval: 4000, // 4 seconds
+      ride: "carousel"
+    });
+  });
+</script>
+
+
+
+    </section>
+
+
+
+      <section class="container align-items-center">
+                      <div style="font-size: 20px; font-weight: 400; margin: .2cm; border-radius: 8px" class="container section info light-background align-items-center">
+
+            <p class="container">Every day, thousands of patients around the world wait for a life-saving organ transplant.
+                Organ donation is a powerful act of kindness that offers hope to those suffering from organ failure due to illness,
+                injury, or genetic conditions. Whether from a living donor or a deceased donor, a single donation can save multiple lives,
+                restoring health and giving recipients a second chance at life. By choosing to become a donor, you are making an invaluable contribution to medical science,
+                humanity, and the well-being of countless individuals in need. Join the movement, learn more about the process, and take a step toward making a lasting impact today.</p>
+<div class="container d-flex gap-3 btns">
+          <a  href="#about" class="btn-get-started"> <button style="border-radius:10px;border: none; color: white; background-color: #10bc69 ">Donate Organ</button>  </a>
+
+              <a href="#about" class="btn-get-started"> <button style="border-radius:10px;border: none; color: white; background-color: #10bc69 ">Pledge Organ</button></a>
+
+</div>
+
+                      </div>
+
+
+        </section>
+
+          <div style="font-size: 20px; font-weight: 400;" class="container section info">
+      <section class="section info">
+
+          <h3> Donor Eligibility & Precautions</h3>
+          <p>Organ donation can be from living or deceased donors, and strict criteria ensure safety and compatibility.</p>
+
+          <h5>Living Donor Requirements</h5>
+
+          <ul>
+              <li>Age: Typically 18–60 years.</li>
+              <li>Health: No chronic diseases (e.g., diabetes, cancer, HIV, or active infections).</li>
+              <li>Organ Compatibility: Blood type and tissue match with the recipient.</li>
+              <li>Lifestyle: No history of substance abuse or high-risk behaviors.</li>
+
+          </ul>
+
+          <br>
+          <h5>Deceased Donor Requirements:</h5>
+          <ul>
+              <li>Must have registered as an organ donor or have family consent.</li>
+              <li>Brain death must be confirmed by medical professionals.</li>
+              <li>Organs must be in good condition and viable for transplant.</li>
+
+          </ul>
+      </section>
+          </div>
+      <hr>
+
+                <div style="font-size: 20px; font-weight: 400;" class="section">
+      <section class="info" >
+          <h3> Organ Recipient Considerations</h3>
+          <p>Recipients undergo detailed medical evaluations to ensure successful transplantation.</p>
+
+          <h5>Eligibility Criteria: </h5>
+          <ul>
+              <li>Must be diagnosed with end-stage organ failure (e.g., kidney, liver, heart).</li>
+              <li>No severe lifestyle risks (e.g., drug abuse, uncontrolled illnesses)</li>
+              <li>No active infections or untreated cancers.</li>
+          </ul>
+
+
+          <h5>Compatibility Requirement </h5>
+          <ul>
+              <li>Blood type matching.</li>
+              <li>Human Leukocyte Antigen (HLA) compatibility to reduce rejection.</li>
+              <li>Cross-match test to prevent immune reactions.</li>
+
+          </ul>
+
+          <h5>Post-Transplant Care:</h5>
+          <ul>
+              <li>Lifelong immunosuppressant medication to prevent organ rejection.</li>
+              <li>Regular medical checkups and lifestyle adjustments.</li>
+              <li>Risk management for infections and complications.</li>
+
+          </ul>
+
+
+</section>
+
+                    <hr>
+                            <div style="font-size: 20px; font-weight: 400;" class="section">
+
+                    <section class="info">
+                        <h3>Importance & Challenges of Organ Transplantation</h3>
+
+                        <p>Organ transplantation saves lives but comes with ethical, medical, and logistical challenges.</p>
+                        <h5>Life-Saving Benefits:</h5>
+                        <ul>
+                            <li>Restores organ function, improving quality of life.</li>
+                                <li>Helps patients with kidney failure, liver cirrhosis, heart disease, etc.</li>
+                                <li>Living donors can lead normal lives after donation.</li>
+
+                        </ul>
+
+                        <h5>Challenges & Ethical Issues:</h5>
+                        <ul>
+                            <li>Organ shortages lead to long waitlists.
+                            <li>Risk of organ rejection despite medication.</li>
+                            <li>Ethical concerns over black-market organ trade.</li>
+                        </ul>
+
+
+                    </section>
+
+                </div>
+                </div>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">LifeLink</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://stemiotsoftwares.onrender.com/">Stemiot Innovations</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></scri

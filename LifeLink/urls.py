@@ -31,4 +31,10 @@ urlpatterns = [
     path('view_recipients/', views.view_recipients, name='view_recipients'),
     path('clients/', views.contact_us, name='contact_us'),
     path('view_clients/', views.view_clients, name='view_clients'),
+    path('organ_transplant/', views.organ_transplant, name='organ_transplant'),
+    path('organ_donor_details/', views.organ_donors_details,name='organ_donor_details'),
+    path('view_organ_donors/', views.view_organ_donors, name='view_organ_donors'),
+    path('organ_recipient_details/',views.organ_recipient_details, name='organ_recipient_details'),
+    path('view_organ_recipients/',views.view_organ_recipients,name='view_organ_recipients')
+
 ]

@@ -1,0 +1,209 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>LifeLink</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/logo1.jpg' %}" rel="icon">
+  <link href="{% static 'assets/img/logo1.jpg' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css'%}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/donor_details.css' %}">
+
+    <style>
+        body{
+            background-image: url("{% static 'assets/img/donor_detail-bg.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{% url 'homepage' %}" class="logo d-flex align-items-center me-auto">
+
+         <img src="{% static 'assets/img/logo1.jpg' %}" alt="">
+        <h1 class="sitename">LifeLink</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'homepage' %}" class="active">Home</a></li>
+          <li><a href="{% url 'homepage' %}#about">About</a></li>
+           <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#services">Blood Donations</a></li>
+              <li><a href="#services">Organ Transplants</a></li>
+              <li><a href="#services">Minor & Major surgeries</a></li>
+              <li><a href="#services">Screening</a></li>
+            </ul>
+          </li>
+          <li><a href="#team">Team</a></li>
+
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+
+    </div>
+  </header>
+
+  <main class="main">
+
+      <div class="container"><br><br>
+
+          <br> <br><br>
+                            <h3 style="color: white">Organ Recipient Details</h3> <br><br>
+
+              <div class="details col-lg-8">
+
+               <form action="/organ_recipient_details/" method="POST" enctype="multipart/form-data"><br><br>
+          {% csrf_token %}
+          <label  for="">Full Name</label> <br>
+          <input class=" col-md-2 form-control" type="text" placeholder="Enter full name" required name="recipient_name"> <br><br>
+
+
+          <label  for="">Organ Type</label><br>
+           <select class=" col-md-2 form-control"  name="recipient_organType" >
+              <option value="">Select Organ Type</option>
+              <option value="Kidney">Kidney</option>
+              <option value="Heart">Heart</option>
+              <option value="Lung">Lung</option>
+              <option value="Liver">Liver</option>
+              <option value="Pancreas">Pancreas</option>
+              <option value="Heart Valve">Heart Valve</option>
+           </select> <br><br>
+
+
+                <label  for="">Phone number</label> <br>
+          <input class=" col-md-2 form-control" type="text" placeholder="Enter phone number" required name="recipient_contact"> <br><br>
+
+                <label  for="">Address</label> <br>
+          <input class=" col-md-2 form-control" type="text" placeholder="00100 Nairobi" required name="recipient_address"> <br><br>
+
+
+                   <label>
+                       {# <label for="">Message</label> <br>#}
+                       <textarea class=" col-md-2 form-control" required name="recipient_message"></textarea>
+                   </label>
+
+                <br>
+                    <button class="btn3" type="submit">Submit</button>
+          <button class="btn3" type="reset">Back</button>
+
+
+                <br><br>
+
+
+
+      </form>
+              </div>  <br><br>
+
+
+
+
+      </div>
+
+
+
+
+       </main>
+
+  <footer id="footer" class="footer">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="{% url 'homepage' %}" class="d-flex align-items-center">
+            <span class="sitename">LifeLink</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Kawangware Street</p>
+            <p>Nairobi, Kenya</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+254 115 598 800</span></p>
+            <p><strong>Email:</strong> <span>info@lifelink.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+          </ul>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">LifeLink</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+               Designed by <a href="https://stemiotsoftwares.onrender.com/">Stemiot Innovations</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
