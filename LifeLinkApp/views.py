@@ -1,8 +1,9 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
 from .forms import RegisterForm,CustomLoginForm
 from django.contrib.auth import login
-
+from LifeLinkApp.models import Donor, Recipient, Client
 
 
 def index(request):
@@ -34,8 +35,80 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
+def contact_us(request):
+    if request.method == 'POST':
+        client_name = request.POST.get('client_name')
+        client_email = request.POST.get('client_email')
+        client_message = request.POST.get('client_message')
+
+        client = Client(
+            client_name = client_name,
+            client_email = client_email,
+            client_message = client_message,
+
+        )
+        client.save()
+    return render(request,'index.html')
+
+def view_clients(request):
+    clients = Client.objects.all()
+    return render(request,'view_clients.html',{'clients':clients})
+
+@login_required(login_url='login')
 def blood_donation(request):
     return render(request, 'blood_donation.html')
+
+
+def donor_details(request):
+    if request.method == 'POST':
+        donor_name = request.POST['donor_name']
+        donor_bloodGroup = request.POST['donor_bloodGroup']
+        donor_contact= request.POST['donor_contact']
+        donor_address=request.POST['donor_address']
+
+        donor=Donor(
+            donor_name=donor_name,
+            donor_bloodGroup=donor_bloodGroup,
+            donor_contact=donor_contact,
+            donor_address=donor_address,
+
+
+        )
+        donor.save()
+
+
+    return render(request,'donor_details.html')
+
+def view_donors(request):
+    donors=Donor.objects.all()
+    return render(request,'view_donors.html',{'donors':donors})
+
+
+def recipient_details(request):
+    if request.method == 'POST':
+        recipient_name = request.POST['recipient_name']
+        recipient_bloodGroup = request.POST['recipient_bloodGroup']
+        recipient_contact= request.POST['recipient_contact']
+        recipient_address=request.POST['recipient_address']
+        recipient_message=request.POST['recipient_message']
+
+
+        recipient = Recipient(
+            recipient_name=recipient_name,
+            recipient_bloodGroup=recipient_bloodGroup,
+            recipient_contact=recipient_contact,
+            recipient_address=recipient_address,
+            recipient_message=recipient_message,
+
+        )
+        recipient.save()
+
+
+    return render(request,'recipient_details.html')
+
+def view_recipients(request):
+    recipients = Recipient.objects.all()
+    return render(request,'view_recipients.html',{'recipients':recipients})
 
 
 

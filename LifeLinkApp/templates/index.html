@@ -50,7 +50,7 @@
           <li><a href="#about">About</a></li>
            <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#services">Blood Donations</a></li>
+              <li><a href="{% url 'blood_donation' %}">Blood Donations</a></li>
               <li><a href="#services">Organ Transplants</a></li>
               <li><a href="#services">Minor & Major surgeries</a></li>
               <li><a href="#services">Screening</a></li>
@@ -59,6 +59,11 @@
           <li><a href="#team">Team</a></li>
 
           <li><a href="#contact">Contact</a></li>
+            
+            {% if request.user.is_superuser %}
+            <li><a href="{% url 'view_donors' %}">Admin</a></li>
+                 {% endif %}
+
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -166,7 +171,7 @@
                 <h3>Blood Donations</h3>
               </a>
               <p style="font-size: large">LifLink enables one to request for blood from the community and also allows a donor to donate blood to whoever might be in need of it.</p>
-              <a href="service-details.html" class="stretched-link"></a>
+              <a href="{% url 'blood_donation' %}" class="stretched-link"></a>
             </div>
           </div><!-- End Service Item -->
 
@@ -220,12 +225,7 @@
               <div class="member-info">
                 <h4>Walter White</h4>
                 <span>Neurosurgeon </span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
+
               </div>
             </div>
           </div><!-- End Team Member -->
@@ -236,12 +236,7 @@
               <div class="member-info">
                 <h4>Sarah Jhonson</h4>
                 <span>Gene Analyst</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
+
               </div>
             </div>
           </div><!-- End Team Member -->
@@ -252,12 +247,7 @@
               <div class="member-info">
                 <h4>William Anderson</h4>
                 <span>Doctor</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
+
               </div>
             </div>
           </div><!-- End Team Member -->
@@ -314,17 +304,18 @@
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form action="/clients/" enctype="multipart/form-data" method="post"  data-aos="fade-up" data-aos-delay="200">
+                {% csrf_token %}
 
                 <div class="col-md-6">
                   <label for="name-field" class="pb-2"><b>Name</b></label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
+                  <input type="text" name="client_name" id="name-field" class="form-control" required="">
                 </div>
                 <br><br>
 
                 <div class="col-md-6">
                   <label for="email-field" class="pb-2"><b>Email</b></label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
+                  <input type="email" class="form-control" name="client_email" id="email-field" required="">
                 </div>
                 <br><br>
 
@@ -332,13 +323,13 @@
 
                 <div class="col-md-12">
                   <label for="message-field" class="pb-2"><b>Message</b> </label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                  <textarea class="form-control" name="client_message" rows="10" id="message-field" required=""></textarea>
                 </div>
                 <br>
 
-                <div class="col-md-12 text-center">
+               <div class="col-md-12 text-center">
 
-                  <button type="submit">Send Message</button>
+                  <button style="color: white; background-color: #10bc69; border-radius: 8px; border: none" type="submit">Send Message</button>
                 </div>
 
 

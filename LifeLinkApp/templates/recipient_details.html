@@ -1,3 +1,4 @@
+
 {% load static %}
 
 
@@ -29,19 +30,16 @@
 
   <!-- Main CSS File -->
   <link href="{% static 'assets/css/main.css'%}" rel="stylesheet">
-
+    <link rel="stylesheet" href="{% static 'assets/css/donor_details.css' %}">
     <style>
-.image-wrapper {
-    width: 90vw; /* Full width */
-    height: 75vh; /* 25% of the viewport height */
-    overflow: hidden; /* Prevents unwanted overflow */
-}
+        body{
+            background-image: url("{% static 'assets/img/recipient-bg.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-.image-wrapper img {
-    object-fit: cover; /* Ensures the image fills the space without stretching */
-}
-</style>
 
+    </style>
 
 </head>
 
@@ -71,160 +69,92 @@
           <li><a href="#team">Team</a></li>
 
           <li><a href="#contact">Contact</a></li>
-
         </ul>
-
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="{% url 'donor_details' %}">Donate</a>
 
     </div>
   </header>
 
   <main class="main">
-      <div class="container"><br><br>
+      <div class="container"><br>
 
-          <h3> Blood Donation</h3> <br>
-
-<!-- Hero Section -->
-<section id="hero" class="hero section">
-    <div class="info d-flex align-items-lg-end">
-        <div class="container">
-            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                <p>
-                    LifeLink aims at hastening the process of blood donation, donor searching, and recipient pledging for blood donation without waiting too long before finding the right donor.
-                    <br><br>
-                    <a href="{% url 'donor_details' %}" class="btn-get-started">Donate Blood</a>
-
-                    <a href="{% url 'recipient_details' %}" class="btn-get-started">Request Blood</a>
+          <h3>Donation Requests</h3><br><br>
 
 
+                   <div class="col-lg-12 recipient_form">
+            <form action="/recipient_details/" method="post"  data-aos="fade-up" data-aos-delay="200"><br><br>
+                {% csrf_token %}
 
-                </p>
-            </div>
+                <div class="col-md-4">
+                  <label  class="pb-2"><b>Name</b></label>
+                  <input type="text" name="recipient_name"  class="form-control" required="">
+                </div>
+                <br><br>
+
+                <div class="col-md-4">
+                 <label  class="pb-2"><b>Blood Group</b></label><br>
+           <select class="form-control"  name="recipient_bloodGroup" id="Select_bloodGroup">
+              <option value="">Select Blood Group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+
+           </select> <br><br>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="pb-2"><b>Phone Number</b></label>
+                  <input type="text" class="form-control" name="recipient_contact" required="">
+                </div>
+                <br><br>
+
+                <div class="col-md-4">
+                  <label class="pb-2"><b>Address</b></label>
+                  <input type="text" class="form-control" name="recipient_address" required="">
+                </div>
+                <br><br>
+
+
+
+                <div class="col-md-5">
+                  <label for="message-field" class="pb-2"><b>Message</b> </label>
+                  <textarea class="form-control" name="recipient_message" rows="10" required=""></textarea>
+                </div>
+                <br>
+
+                <div class="col-md-6 text-center">
+
+                    <button style="color: white; border: none; border-radius: 8px; background-color: blue;font-size: large" class="btn-get-started">Submit</button>
+                </div>
+                <br><br>
+
+
+            </form>
+          </div><!-- End Contact Form -->
+
         </div>
-    </div>
-
-    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{% static 'assets/img/blood_donation_eligibility_edited.585x329.jpg' %}" alt="Blood Donation">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'assets/img/blood_donation_eligibility_edited.585x329.jpg' %}" alt="Organ Transplant">
-            </div>
-            <div class="carousel-item">
-                <img src="{% static 'assets/img/blood_donation_eligibility_edited.585x329.jpg' %}" alt="Hero Image 5">
-            </div>
-        </div>
-
-        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </a>
-
-        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </a>
-    </div>
-</section>
-          
-      </div>
-
-          <div style="font-size: 20px; font-weight: 400;" class="container section info">
-
-<section class="container section info">
-
-
-              <h3><b>Donor Eligibility & Precautions</b></h3>
-
-              <p>To donate blood, a person must meet specific health and safety criteria to ensure their well-being and the quality of the donated blood.</p>
-              <h5>Eligibility Requirements:</h5>
-              <ul>
-                  <li>Age: 18–65 years (16–17 with parental consent).</li>
-                  <li>Weight: Minimum 50 kg</li>
-                  <li>Health: Free from infectious diseases, no recent surgeries, and no chronic conditions like uncontrolled diabetes or hypertension.</li>
-                  <li>Lifestyle: No recent tattoos or piercings (within the last 3–6 months), no drug use, and no risky sexual behavior.</li>
-              </ul>
-
-</section>
-              <hr>
-
-
-<section class="container section info">
-
-              <h3><b>Precautions Before Donation:</b></h3>
-              <ul>
-                  <li>Eat an iron-rich meal and stay hydrated.</li>
-                  <li>Avoid alcohol and smoking 24 hours before donation.</li>
-                  <li>Get enough rest the night before.</li>
-              </ul>
-</section>
-
-              <hr>
-
-<section class="container section info">
-
-      <h3><b>Precautions After Donation:</b></h3>
-              <ul>
-
-               <li>Avoid heavy lifting with the donation arm to prevent bruising.</li>
-              <li>Rest for 15–30 minutes after donating.</li>
-              <li>Drink plenty of fluids and avoid strenuous activities for the next 24 hours.</li>
-
-              </ul>
+      <br><br>
 
 
 
-</section>
 
 
-              <hr>
-
-<section class="container section info">
-
-      <h3>Blood Recipient Considerations</h3>
-<p>Recipients of donated blood must meet medical requirements and be monitored for any reactions.</p>
-    <h5>Compatibility:</h5>
-    <ul>
-        <li>Blood type must match or be compatible (O-negative is the universal donor, AB-positive is the universal recipient).</li>
-        <li>RH factor should be considered (positive or negative).</li>
-    </ul>
-
-    <h5>Risks & Precautions:</h5>
-    <ul>
-        <li>Emergency Use: Supports accident victims, surgeries, and childbirth complications.</li>
-        <li>Medical Treatments: Used for cancer patients, individuals with sickle cell disease, and anemic patients.</li>
-        <li>Community Benefit: Regular donations help maintain a stable blood supply.</li>
-
-    </ul>
 
 
-    <section class="container section info">
 
 
-    <h3>Importance & Impact of Blood Donation</h3>
-    <p>Blood donation is crucial in saving lives and supporting healthcare systems.</p>
-
-    <ul>
-        <li>Emergency Use: Supports accident victims, surgeries, and childbirth complications.</li>
-        <li>Medical Treatments: Used for cancer patients, individuals with sickle cell disease, and anemic patients.</li>
-        <li>Community Benefit: Regular donations help maintain a stable blood supply.</li>
-
-    </ul>
-
-    </section>
 
 
-</section>
-
- </div>
 
 
-      <hr>
-
-
-      </main>
+    </main>
 
   <footer id="footer" class="footer">
 

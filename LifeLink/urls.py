@@ -19,9 +19,16 @@ from django.urls import path
 from LifeLinkApp import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', views.index, name='homepage'),
     path('login/', views.login_page, name='login'),
     path('signup/', views.signup, name='signup'),
-    path('donate',views.blood_donation, name='blood_donation'),
+    path('donate/',views.blood_donation, name='blood_donation'),
+    path('donor_details/',views.donor_details, name='donor_details'),
+    path('view_donors/',views.view_donors,name='view_donors'),
+
+    path('recipient_details/',views.recipient_details, name='recipient_details'),
+    path('view_recipients/', views.view_recipients, name='view_recipients'),
+    path('clients/', views.contact_us, name='contact_us'),
+    path('view_clients/', views.view_clients, name='view_clients'),
 ]
