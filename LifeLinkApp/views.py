@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
 from .forms import RegisterForm,CustomLoginForm
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 from LifeLinkApp.models import Donor, Recipient, Client, OrganDonor, OrganRecipient
 
 
@@ -20,6 +20,11 @@ def login_page(request):
         form = CustomLoginForm()
 
     return render(request, 'login.html',{'form':form})
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('homepage')
 
 
 def signup(request):
