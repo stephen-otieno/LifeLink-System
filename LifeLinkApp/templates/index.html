@@ -46,14 +46,14 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="{% url 'homepage' %}" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
            <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="{% url 'blood_donation' %}">Blood Donations</a></li>
-              <li><a href="#services">Organ Transplants</a></li>
-              <li><a href="#services">Minor & Major surgeries</a></li>
-              <li><a href="#services">Screening</a></li>
+              <li><a href="{% url 'organ_transplant' %}">Organ Transplants</a></li>
+              <li><a href="{% url 'organ_transplant' %}">Minor & Major surgeries</a></li>
+              <li><a href="{% url 'organ_transplant' %}">Screening</a></li>
             </ul>
           </li>
           <li><a href="#team">Team</a></li>
@@ -68,7 +68,11 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="{% url 'login' %}">Login</a>
+      {% if not request.user.is_authenticated %}
+            <a class="btn-getstarted" href="{% url 'login' %}">Login</a>
+        {% else %}
+            <a class="btn-getstarted" href="{% url 'logout' %}">Logout</a>
+        {% endif %}
 
     </div>
   </header>
@@ -152,7 +156,6 @@
               <div class="icon">
                 <i class="bi bi-activity"></i>
               </div>
-              <a href="service-details.html" class="stretched-link">
                 <h3>Organ Transplant</h3>
               </a>
               <p style="font-size: large">We carry out only medically suitable organ transplants to our clients by matching the donors' and recipients' organ type before transplant.
@@ -170,7 +173,6 @@
               <div class="icon">
                 <i class="bi bi-calendar4-week"></i>
               </div>
-              <a href="service-details.html" class="stretched-link">
                 <h3>Blood Donations</h3>
               </a>
               <p style="font-size: large">LifLink enables one to request for blood from the community and also allows a donor to donate blood to whoever might be in need of it.</p>
@@ -184,11 +186,10 @@
               <div class="icon">
                 <i class="bi bi-bounding-box-circles"></i>
               </div>
-              <a href="service-details.html" class="stretched-link">
                 <h3>Screening</h3>
               </a>
               <p style="font-size: large">Before any transplants or blood donations, LifeLink ensures that all the specimen is taken to the lab for thorough screening to mitigate any potential risks after the transplants or donations occur.</p>
-              <a href="service-details.html" class="stretched-link"></a>
+              <a href="{% url 'organ_transplant' %}" class="stretched-link"></a>
             </div>
           </div><!-- End Service Item -->
 
@@ -201,11 +202,6 @@
       </div>
 
     </section><!-- /Services Section -->
-
-
-
-
-
 
 
     <!-- Team Section -->
@@ -282,7 +278,7 @@
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
                   <h3>Address</h3>
-                  <p>Kawangware Street, Nairobi, Kenya</p>
+                  <p>Nairobi, Kenya</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -349,58 +345,12 @@
 
   <footer id="footer" class="footer">
 
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="{% url 'homepage' %}" class="d-flex align-items-center">
-            <span class="sitename">LifeLink</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>Kawangware Street</p>
-            <p>Nairobi, Kenya</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+254 115 598 800</span></p>
-            <p><strong>Email:</strong> <span>info@lifelink.com</span></p>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-          </ul>
-        </div>
-
-{#        <div class="col-lg-4 col-md-12">#}
-{#          <h4>Follow Us</h4>#}
-{#          <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>#}
-{#          <div class="social-links d-flex">#}
-{#            <a href=""><i class="bi bi-twitter-x"></i></a>#}
-{#            <a href=""><i class="bi bi-facebook"></i></a>#}
-{#            <a href=""><i class="bi bi-instagram"></i></a>#}
-{#            <a href=""><i class="bi bi-linkedin"></i></a>#}
-{#          </div>#}
-{#        </div>#}
-
-      </div>
-    </div>
+   
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">LifeLink</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright 2026</span> <strong class="px-1 sitename">LifeLink</strong> <span>| All Rights Reserved</span></p>
       <div class="credits">
-               Designed by <a href="https://stemiotsoftwares.onrender.com/">Stemiot Innovations</a>
+               Designed by <a href="https://stemiotsoftwares.vercel.app/">Stemiot Innovations</a>
       </div>
     </div>
 

@@ -56,26 +56,30 @@
         <h1 class="sitename">LifeLink</h1>
       </a>
 
-      <nav id="navmenu" class="navmenu">
+         <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="{% url 'homepage' %}" class="active">Home</a></li>
-          <li><a href="{% url 'homepage' %}#about">About</a></li>
+          <li><a href="#about">About</a></li>
            <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#services">Blood Donations</a></li>
-              <li><a href="#services">Organ Transplants</a></li>
-              <li><a href="#services">Minor & Major surgeries</a></li>
-              <li><a href="#services">Screening</a></li>
+              <li><a href="{% url 'blood_donation' %}">Blood Donations</a></li>
+              <li><a href="{% url 'organ_transplant' %}">Organ Transplants</a></li>
+              <li><a href="{% url 'organ_transplant' %}">Minor & Major surgeries</a></li>
+              <li><a href="{% url 'organ_transplant' %}">Screening</a></li>
             </ul>
           </li>
           <li><a href="#team">Team</a></li>
 
           <li><a href="#contact">Contact</a></li>
+            
+            {% if request.user.is_superuser %}
+            <li><a href="{% url 'view_donors' %}">Admin</a></li>
+                 {% endif %}
 
         </ul>
-
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+
 
       <a class="btn-getstarted" href="{% url 'donor_details' %}">Donate</a>
 
@@ -226,7 +230,7 @@
 
       </main>
 
-  <footer id="footer" class="footer">
+  <!-- <footer id="footer" class="footer">
 
     <div class="container footer-top">
       <div class="row gy-4">
@@ -273,7 +277,7 @@
       </div>
     </div>
 
-  </footer>
+  </footer> -->
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
