@@ -1,1 +1,1 @@
-web: gunicorn LifeLink-System.wsgi
+web: gunicorn LifeLink.wsgi
